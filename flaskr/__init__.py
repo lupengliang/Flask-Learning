@@ -28,4 +28,11 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
 
+    from . import db
+    db.init_app(app)
+
+    # 认证功能注册蓝图
+    from . import auth
+    app.register_blueprint(auth.bp)
+
     return app
